@@ -14,23 +14,25 @@ import { flyApi } from './routes/api-fly';
 // ============================================================================
 // API KEYS & CONSTANTS - Single source of truth
 // ============================================================================
-// API Keys - loaded from environment variables
-const getApiKeys = (env: any) => ({
-  KIE_AI: env.KIE_AI_API_KEY || '',
-  ELEVENLABS: env.ELEVENLABS_API_KEY || '',
-  VERCEL: env.VERCEL_TOKEN || '',
+const API_KEYS = {
+  KIE_AI: env.KIE_AI_API_KEY || "",
+  ELEVENLABS: env.ELEVENLABS_API_KEY || "",
+  VERCEL: env.VERCEL_TOKEN || "",
   CLOUDINARY: {
-    CLOUD: env.CLOUDINARY_CLOUD_NAME || '',
-    KEY: env.CLOUDINARY_API_KEY || '',
-    SECRET: env.CLOUDINARY_API_SECRET || ''
+    CLOUD: env.CLOUDINARY_CLOUD_NAME || "",
+    KEY: env.CLOUDINARY_API_KEY || "",
+    SECRET: env.CLOUDINARY_API_SECRET || ""
   },
-  PERPLEXITY: env.PERPLEXITY_API_KEY || ''
-});
+  PERPLEXITY: env.PERPLEXITY_API_KEY || ""
+} as const;
+
+const COMPUTE_URL = 'https://soulprint-compute-production.up.railway.app';
+
 // ============================================================================
 // OPIK TRACING - LLM Observability via REST API
 // ============================================================================
 const OPIK_API_URL = 'https://www.comet.com/opik/api';
-const OPIK_API_KEY = env.OPIK_API_KEY || '';
+const OPIK_API_KEY = ''; // Set via env.OPIK_API_KEY
 const OPIK_WORKSPACE = 'default';
 const OPIK_PROJECT = 'soulprint';
 
