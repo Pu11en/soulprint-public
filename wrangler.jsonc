@@ -1,0 +1,74 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "soul-home",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-05-06",
+  "compatibility_flags": ["nodejs_compat"],
+  "account_id": "620562612bc73e44e282f7dc3482b3c7",
+  
+  // Workers Unbound - allows up to 30 minutes execution time (pay-per-use)
+  "usage_model": "unbound",
+  
+  "observability": {
+    "enabled": true
+  },
+
+  "routes": [
+    { "pattern": "soulprintengine.ai/*", "zone_name": "soulprintengine.ai" },
+    { "pattern": "www.soulprintengine.ai/*", "zone_name": "soulprintengine.ai" }
+  ],
+
+  // Static assets for frontend (built by vite)
+  "assets": {
+    "directory": "./dist/client/client",
+    "not_found_handling": "single-page-application",
+    "html_handling": "auto-trailing-slash",
+    "binding": "ASSETS",
+    "run_worker_first": true
+  },
+
+  // Allow importing HTML files as text modules and PNG files as binary
+  "rules": [
+    {
+      "type": "Text",
+      "globs": ["**/*.html"],
+      "fallthrough": false
+    },
+    {
+      "type": "Data",
+      "globs": ["**/*.png"],
+      "fallthrough": false
+    }
+  ],
+
+  // Build command for vite
+  "build": {
+    "command": "npm run build"
+  },
+
+  // R2 storage for user data
+  "r2_buckets": [
+    {
+      "binding": "SOUL_DATA",
+      "bucket_name": "soul-home-data"
+    }
+  ],
+
+  // KV for sessions and access codes
+  "kv_namespaces": [
+    {
+      "binding": "SESSIONS",
+      "id": "f1a8e0681992490ba4d7ff7b3ce35708"
+    }
+  ],
+
+  // Environment variables (secrets set via wrangler secret)
+  "vars": {
+    "ENVIRONMENT": "production"
+  },
+
+  // Browser Rendering - Puppeteer for browser automation
+  "browser": {
+    "binding": "BROWSER"
+  }
+}

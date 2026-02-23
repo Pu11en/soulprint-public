@@ -1,0 +1,480 @@
+/* === Assessment Stepper — HUD Terminal Style === */
+
+.assessment-stepper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: calc(100vh - 120px);
+  animation: assessFadeIn 0.5s ease;
+}
+
+/* -- Header: close + pillar badge -- */
+.assessment-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.assessment-close-btn {
+  background: none;
+  border: none;
+  color: #737373;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.assessment-close-btn:hover {
+  color: #ea580c;
+}
+
+.assessment-close-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+.assessment-pillar-badge {
+  font-family: 'Geist', 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ea580c;
+  border: 1px solid rgba(234, 88, 12, 0.3);
+  background: rgba(234, 88, 12, 0.1);
+  padding: 6px 14px;
+  border-radius: 4px;
+}
+
+/* Spacer to center the badge */
+.assessment-header-spacer {
+  width: 32px;
+}
+
+/* -- Progress bar -- */
+.assessment-progress {
+  margin-bottom: 48px;
+}
+
+.assessment-progress-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 10px;
+  font-family: 'Geist', 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+
+.assessment-progress-count {
+  font-weight: 700;
+  color: #ea580c;
+  text-shadow: 0 0 15px rgba(234, 88, 12, 0.5);
+}
+
+.assessment-progress-count .progress-total {
+  color: #525252;
+  font-weight: 400;
+  text-shadow: none;
+}
+
+.assessment-progress-label {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ea580c;
+}
+
+.assessment-progress-track {
+  width: 100%;
+  height: 2px;
+  background: #262626;
+  border-radius: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.assessment-progress-fill {
+  height: 100%;
+  background: #ea580c;
+  border-radius: 1px;
+  transition: width 0.4s ease;
+  box-shadow: 0 0 12px 2px rgba(234, 88, 12, 0.8);
+}
+
+/* -- Question area -- */
+.assessment-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.assessment-question-text {
+  font-family: 'Geist', 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.25;
+  color: #ffffff;
+  margin: 0 0 32px;
+  letter-spacing: -0.02em;
+  animation: assessFadeIn 0.3s ease;
+}
+
+/* -- Textarea with corner accents -- */
+.assessment-textarea-wrap {
+  position: relative;
+}
+
+/* Orange glow on focus */
+.assessment-textarea-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(to right, rgba(234, 88, 12, 0.2), rgba(154, 52, 18, 0.2));
+  border-radius: 14px;
+  opacity: 0;
+  transition: opacity 0.5s;
+  filter: blur(8px);
+}
+
+.assessment-textarea-wrap:focus-within::before {
+  opacity: 1;
+}
+
+.assessment-textarea-inner {
+  position: relative;
+  background: rgba(26, 26, 26, 0.8);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Corner accents */
+.assessment-textarea-inner .corner-tl,
+.assessment-textarea-inner .corner-tr,
+.assessment-textarea-inner .corner-bl,
+.assessment-textarea-inner .corner-br {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.assessment-textarea-inner .corner-tl {
+  top: 0;
+  left: 0;
+  border-top: 1px solid rgba(234, 88, 12, 0.5);
+  border-left: 1px solid rgba(234, 88, 12, 0.5);
+  border-top-left-radius: 12px;
+}
+
+.assessment-textarea-inner .corner-tr {
+  top: 0;
+  right: 0;
+  border-top: 1px solid rgba(234, 88, 12, 0.5);
+  border-right: 1px solid rgba(234, 88, 12, 0.5);
+  border-top-right-radius: 12px;
+}
+
+.assessment-textarea-inner .corner-bl {
+  bottom: 0;
+  left: 0;
+  border-bottom: 1px solid rgba(234, 88, 12, 0.5);
+  border-left: 1px solid rgba(234, 88, 12, 0.5);
+  border-bottom-left-radius: 12px;
+}
+
+.assessment-textarea-inner .corner-br {
+  bottom: 0;
+  right: 0;
+  border-bottom: 1px solid rgba(234, 88, 12, 0.5);
+  border-right: 1px solid rgba(234, 88, 12, 0.5);
+  border-bottom-right-radius: 12px;
+}
+
+.assessment-textarea {
+  width: 100%;
+  height: 192px;
+  background: transparent;
+  border: none;
+  padding: 20px;
+  color: #e5e5e5;
+  font-family: 'Geist', 'JetBrains Mono', monospace;
+  font-size: 16px;
+  line-height: 1.7;
+  resize: none;
+  outline: none;
+  position: relative;
+  z-index: 10;
+}
+
+.assessment-textarea::placeholder {
+  color: #525252;
+}
+
+.assessment-textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.assessment-textarea::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.assessment-textarea::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+.assessment-textarea::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* -- Listening state on textarea -- */
+.assessment-textarea-inner.listening {
+  border-color: #ea580c;
+  box-shadow:
+    0 0 20px rgba(234, 88, 12, 0.3),
+    inset 0 0 20px rgba(234, 88, 12, 0.05);
+}
+
+/* -- Mic button -- */
+.assessment-mic-btn {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  z-index: 20;
+  background: none;
+  border: 2px solid transparent;
+  color: #ea580c;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  opacity: 0.6;
+}
+
+.assessment-mic-btn:hover {
+  opacity: 1;
+  background: rgba(234, 88, 12, 0.1);
+}
+
+/* Active / recording state */
+.assessment-mic-active {
+  opacity: 1;
+  background: rgba(234, 88, 12, 0.15);
+  border-color: #ea580c;
+  box-shadow:
+    0 0 0 4px rgba(234, 88, 12, 0.2),
+    0 0 16px rgba(234, 88, 12, 0.4);
+  animation: micRingPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes micRingPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 4px rgba(234, 88, 12, 0.2),
+      0 0 16px rgba(234, 88, 12, 0.4);
+  }
+  50% {
+    box-shadow:
+      0 0 0 8px rgba(234, 88, 12, 0.1),
+      0 0 24px rgba(234, 88, 12, 0.6);
+  }
+}
+
+/* -- Hint listening state -- */
+.assessment-hint-listening {
+  color: #ea580c;
+}
+
+.assessment-hint-listening strong {
+  color: #ffffff;
+}
+
+/* -- Analysis hint -- */
+.assessment-hint {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 20px;
+  font-family: 'Geist', 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: #525252;
+  line-height: 1.5;
+}
+
+.assessment-hint-icon {
+  color: rgba(234, 88, 12, 0.7);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* -- Navigation buttons -- */
+.assessment-nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+.assessment-back-btn {
+  width: 33%;
+  padding: 16px;
+  background: transparent;
+  border: 1px solid #262626;
+  border-radius: 9999px;
+  color: #737373;
+  font-family: 'Geist', 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.assessment-back-btn:hover {
+  background: #171717;
+  color: #ffffff;
+}
+
+.assessment-continue-btn {
+  flex: 1;
+  position: relative;
+  padding: 16px;
+  background: #ea580c;
+  border: none;
+  border-radius: 9999px;
+  color: #ffffff;
+  font-family: 'Geist', 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    background 0.2s,
+    transform 0.15s;
+  box-shadow: 0 0 20px rgba(234, 88, 12, 0.4);
+}
+
+.assessment-continue-btn:hover:not(:disabled) {
+  background: #c2410c;
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(234, 88, 12, 0.6);
+}
+
+.assessment-continue-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.assessment-continue-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Sweep effect */
+.assessment-continue-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.assessment-continue-btn:hover:not(:disabled)::before {
+  transform: translateY(0);
+}
+
+.assessment-continue-btn-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.assessment-continue-btn-content svg {
+  transition: transform 0.2s;
+}
+
+.assessment-continue-btn:hover:not(:disabled) .assessment-continue-btn-content svg {
+  transform: translateX(4px);
+}
+
+/* -- Pillar transition screen -- */
+.assessment-transition {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 16px;
+  padding: 32px 16px;
+  animation: assessFadeIn 0.4s ease;
+}
+
+.assessment-transition-text {
+  font-size: 17px;
+  line-height: 28px;
+  color: #a3a3a3;
+  font-style: italic;
+  max-width: 360px;
+  margin: 0;
+}
+
+.assessment-transition-hint {
+  font-family: 'Geist', 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: #525252;
+  margin: 0;
+}
+
+/* -- Animations -- */
+@keyframes assessFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* -- Responsive -- */
+@media (max-width: 480px) {
+  .assessment-question-text {
+    font-size: 22px;
+  }
+
+  .assessment-textarea {
+    height: 160px;
+    font-size: 15px;
+    padding: 16px;
+  }
+
+  .assessment-back-btn,
+  .assessment-continue-btn {
+    padding: 14px;
+  }
+}

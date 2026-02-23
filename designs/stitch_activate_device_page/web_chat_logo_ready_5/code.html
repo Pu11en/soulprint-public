@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SoulPrint Chat Info</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#EA580C", // SoulPrint Brand Orange
+                        "primary-glow": "rgba(234, 88, 12, 0.5)",
+                        "background-light": "#f8f6f5",
+                        "background-dark": "#050505", // Deep Obsidian Black
+                        "surface-dark": "#0A0A0C",
+                        "surface-glass": "rgba(255, 255, 255, 0.05)",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"], 
+                        mono: ["JetBrains Mono", "monospace"], // Tech/HUD feel
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem", 
+                        lg: "0.5rem", 
+                        xl: "0.75rem", 
+                        full: "9999px"
+                    },
+                    boxShadow: {
+                        'neon': '0 0 10px rgba(234, 88, 12, 0.6), 0 0 20px rgba(234, 88, 12, 0.3)',
+                        'neon-sm': '0 0 5px rgba(234, 88, 12, 0.4)',
+                        'glass': '0 4px 30px rgba(0, 0, 0, 0.1)',
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .glass-panel {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .tech-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(50, 50, 50, 0.15) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(50, 50, 50, 0.15) 1px, transparent 1px);
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        }
+        .scanlines {
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.1));
+            background-size: 100% 4px;
+            position: fixed;
+            pointer-events: none;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 50;
+            opacity: 0.15;
+        }
+        .hud-border-b {
+            position: relative;
+        }
+        .hud-border-b::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(234, 88, 12, 0.5), transparent);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200 font-display antialiased min-h-screen flex flex-col overflow-hidden relative selection:bg-primary selection:text-white">
+<div class="tech-grid fixed inset-0 pointer-events-none z-0"></div>
+<div class="scanlines pointer-events-none"></div>
+<div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+<div class="absolute top-[-20%] left-[50%] w-[500px] h-[500px] bg-primary opacity-[0.03] blur-[100px] rounded-full -translate-x-1/2"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-80 h-80 bg-primary opacity-[0.02] blur-[100px] rounded-full"></div>
+</div>
+<header class="relative z-20 w-full px-4 py-4 flex items-center justify-between bg-black/60 backdrop-blur-md border-b border-white/5">
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/5 transition-colors group">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">arrow_back</span>
+</button>
+<div class="text-xs font-mono tracking-[0.2em] text-gray-500 uppercase">Bot details</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/5 transition-colors group">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">settings</span>
+</button>
+</header>
+<main class="flex-1 overflow-y-auto scrollbar-hide relative z-10 p-6 space-y-8">
+<div class="flex flex-col items-center justify-center space-y-4 pt-4">
+<div class="relative group">
+<div class="absolute inset-[-4px] rounded-full border border-primary/30 border-dashed animate-[spin_10s_linear_infinite]"></div>
+<div class="absolute inset-[-8px] rounded-full border border-white/5"></div>
+<div class="w-28 h-28 rounded-full overflow-hidden bg-black relative border-2 border-primary/50 shadow-neon">
+<img alt="SoulPrint Bot Avatar" class="w-full h-full object-cover p-1 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-Ht22wVGAZYQjvBMPiljOSoHBVCUXHblIafv7_Ubw-NWD1-hagZlbDgt1jeum_Pu1klik_vVi52pEMuLmBXInYnCF3KfV4-ALZIf8Go7b2Hj5FH3gqgLNNbdt5i_mAqqyId2zbWLPKOkA5OSSPTOituExk28e9pd83cKJJqiBqUan5wITtOL-mjZhw9Oq9ptdDZjS27EAjvJRD7zL3OdcGgGVpj8q_a1BCHargxhtpkliXCIASrp3XWkOwPCw6pxvzOp1Lc7K-u_B"/>
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent pointer-events-none"></div>
+</div>
+<div class="absolute bottom-1 right-1 bg-black/80 backdrop-blur px-2 py-0.5 rounded-full border border-green-500/30 flex items-center gap-1.5 shadow-lg">
+<div class="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_5px_#22c55e] animate-pulse"></div>
+<span class="text-[10px] font-mono text-green-400 uppercase tracking-wide">Online</span>
+</div>
+</div>
+<div class="text-center space-y-1">
+<h1 class="text-2xl font-display font-bold text-white tracking-tight">SoulPrint v2.0</h1>
+<p class="text-xs font-mono text-primary uppercase tracking-widest opacity-80">AI Neural Interface</p>
+</div>
+</div>
+<div class="relative h-px bg-white/10 w-full">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-primary rotate-45"></div>
+<div class="absolute top-1/2 left-0 -translate-y-1/2 w-1 h-4 bg-white/10"></div>
+<div class="absolute top-1/2 right-0 -translate-y-1/2 w-1 h-4 bg-white/10"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="glass-panel p-4 rounded-xl flex flex-col items-center justify-center gap-2 group hover:border-primary/30 transition-colors">
+<span class="material-symbols-outlined text-gray-500 group-hover:text-primary transition-colors text-2xl">grid_view</span>
+<span class="text-[10px] font-mono text-gray-500 uppercase tracking-wider">Platform</span>
+<span class="text-sm font-semibold text-white">iOS App</span>
+</div>
+<div class="glass-panel p-4 rounded-xl flex flex-col items-center justify-center gap-2 group hover:border-primary/30 transition-colors">
+<span class="material-symbols-outlined text-gray-500 group-hover:text-primary transition-colors text-2xl">psychology</span>
+<span class="text-[10px] font-mono text-gray-500 uppercase tracking-wider">Capabilities</span>
+<span class="text-sm font-semibold text-white">6 Skills Active</span>
+</div>
+</div>
+<div class="glass-panel rounded-xl overflow-hidden">
+<div class="bg-white/5 px-4 py-2 border-b border-white/5 flex justify-between items-center">
+<span class="text-[10px] font-mono text-gray-400 uppercase">Active Modules</span>
+<span class="w-1.5 h-1.5 bg-primary rounded-full shadow-neon-sm"></span>
+</div>
+<div class="p-4 space-y-3">
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-gray-500 text-sm group-hover:text-primary transition-colors">analytics</span>
+<span class="text-sm text-gray-300 font-mono">Data Analysis</span>
+</div>
+<div class="flex items-center gap-1">
+<div class="w-8 h-1 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[80%]"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-gray-500 text-sm group-hover:text-primary transition-colors">translate</span>
+<span class="text-sm text-gray-300 font-mono">Translation</span>
+</div>
+<div class="flex items-center gap-1">
+<div class="w-8 h-1 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[100%]"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-gray-500 text-sm group-hover:text-primary transition-colors">image</span>
+<span class="text-sm text-gray-300 font-mono">Image Gen</span>
+</div>
+<div class="flex items-center gap-1">
+<div class="w-8 h-1 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[60%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-3 pt-2">
+<button class="w-full group relative overflow-hidden rounded-lg bg-transparent border border-white/20 hover:border-primary/50 transition-all duration-300 p-4">
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-300"></div>
+<div class="relative flex items-center justify-center gap-2">
+<svg class="w-5 h-5 text-gray-400 group-hover:text-primary transition-colors" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 11.944 0zm4.961 7.224c.131.026.34.145.433.454.123.422.094 1.935-.041 2.871l-1.874 9.178c-.03.154-.105.344-.316.394-.179.042-.45-.083-.604-.158l-5.46-3.805-2.651-1.298c-.147-.074-.356-.164-.354-.422.002-.271.213-.393.433-.49l10.439-4.724z"></path>
+</svg>
+<span class="font-mono text-sm font-medium text-gray-300 group-hover:text-white transition-colors uppercase tracking-wide">Open in Telegram</span>
+</div>
+</button>
+<button class="w-full group relative overflow-hidden rounded-lg bg-transparent border border-red-500/30 hover:border-red-500/80 transition-all duration-300 p-4">
+<div class="absolute inset-0 bg-red-500/0 group-hover:bg-red-500/5 transition-colors duration-300"></div>
+<div class="relative flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-red-500/70 group-hover:text-red-500 transition-colors">restart_alt</span>
+<span class="font-mono text-sm font-medium text-red-400 group-hover:text-red-300 transition-colors uppercase tracking-wide">Restart Bot System</span>
+</div>
+</button>
+</div>
+<div class="pt-8 pb-4 text-center">
+<p class="text-[9px] font-mono text-gray-600 uppercase tracking-[0.2em]">
+                System ID: #884-X92-A1
+             </p>
+</div>
+</main>
+
+</body></html>

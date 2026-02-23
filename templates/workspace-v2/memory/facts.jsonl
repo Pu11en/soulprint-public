@@ -1,0 +1,1 @@
+{"_schema": "fact", "_version": "1.0", "_description": "Core facts about the user. Append-only. Mark status:archived to remove, never delete lines."}

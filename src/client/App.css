@@ -1,0 +1,159 @@
+/* App layout styles */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Frosted glass header matching Stitch */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--border-color);
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.header-icon-box:hover {
+  border-color: var(--primary-color);
+}
+
+.header-icon-box .material-symbols-outlined {
+  font-size: 20px;
+  color: var(--text-primary);
+}
+
+.header-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.header-title.clickable {
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.header-title.clickable:hover {
+  opacity: 0.8;
+}
+
+.admin-badge {
+  padding: 0.2rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  background-color: rgba(234, 88, 12, 0.1);
+  border: 1px solid rgba(234, 88, 12, 0.2);
+}
+
+/* Nav links/buttons (shared) */
+.app-nav {
+  display: flex;
+  gap: 0.25rem;
+  margin-left: auto;
+  align-items: center;
+}
+
+.nav-btn {
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+.nav-btn:hover {
+  background-color: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.nav-btn.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.nav-btn.cta {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.5rem 1.25rem;
+}
+
+.nav-btn.cta:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Nav links (landing page header) */
+.nav-link {
+  padding: 0.5rem 0.75rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.app-main {
+  flex: 1;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.app-main.landing-main {
+  padding: 0;
+  max-width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .app-header {
+    padding: 0 0.75rem;
+  }
+
+  .app-main {
+    padding: 0.75rem;
+  }
+
+  .app-main.landing-main {
+    padding: 0;
+  }
+}

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SoulPrint Signup Quick Profile Chips</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#EA580C", // SoulPrint Brand Orange
+                        "primary-glow": "rgba(234, 88, 12, 0.5)",
+                        "background-light": "#f8f6f5", 
+                        "background-dark": "#000000", // Using deep black from context
+                        "surface-dark": "#0A0A0C",
+                        "surface-glass": "rgba(255, 255, 255, 0.05)",
+                    },
+                    fontFamily: {
+                        display: ["JetBrains Mono", "monospace"], // Tech/HUD feel preserved
+                        body: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem", 
+                        lg: "0.5rem", 
+                        xl: "0.75rem", 
+                        full: "9999px"
+                    },
+                    boxShadow: {
+                        'neon': '0 0 10px rgba(234, 88, 12, 0.6), 0 0 20px rgba(234, 88, 12, 0.3)',
+                        'neon-sm': '0 0 5px rgba(234, 88, 12, 0.4)',
+                        'glass': '0 4px 30px rgba(0, 0, 0, 0.1)',
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .glass-panel {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .tech-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(50, 50, 50, 0.2) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(50, 50, 50, 0.2) 1px, transparent 1px);
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        }
+        .scanlines {
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+            background-size: 100% 4px;
+            position: fixed;
+            pointer-events: none;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 50;
+            opacity: 0.1;
+        }input[type="radio"]:checked + label {
+            border-color: #EA580C;
+            background-color: rgba(234, 88, 12, 0.15);
+            color: #EA580C;
+            box-shadow: 0 0 10px rgba(234, 88, 12, 0.3);
+        }
+        input[type="radio"]:checked + label .check-icon {
+            opacity: 1;
+            width: 16px;
+            margin-right: 6px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark text-gray-200 font-body antialiased min-h-screen flex flex-col relative overflow-x-hidden selection:bg-primary selection:text-white">
+<div class="tech-grid fixed inset-0 pointer-events-none z-0"></div>
+<div class="scanlines pointer-events-none"></div>
+<div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+<div class="absolute top-[-10%] right-[20%] w-64 h-64 bg-primary opacity-5 blur-[80px] rounded-full"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-80 h-80 bg-primary opacity-5 blur-[100px] rounded-full"></div>
+</div>
+<header class="relative z-20 w-full pt-6 pb-2 px-6">
+<div class="flex justify-between items-center mb-6">
+<button class="text-gray-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="flex items-center gap-2">
+<span class="font-display font-bold text-xs tracking-widest text-primary uppercase">Step 02</span>
+<span class="text-gray-600 font-display text-xs">/</span>
+<span class="text-gray-600 font-display text-xs">04</span>
+</div>
+<button class="text-gray-400 hover:text-primary transition-colors font-display text-xs uppercase tracking-wide">
+                Skip
+            </button>
+</div>
+<div class="w-full h-1 bg-white/10 rounded-full overflow-hidden relative mb-2">
+<div class="absolute top-0 left-0 h-full w-1/2 bg-primary shadow-neon"></div>
+<div class="absolute top-0 left-0 w-full h-full flex justify-between px-1">
+<div class="w-px h-full bg-black/50"></div>
+<div class="w-px h-full bg-black/50"></div>
+<div class="w-px h-full bg-black/50"></div>
+</div>
+</div>
+<div class="flex justify-between text-[9px] text-gray-500 font-display uppercase tracking-wider">
+<span>Identity</span>
+<span class="text-primary">Profile</span>
+<span>Connect</span>
+<span>Sync</span>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto scrollbar-hide relative z-10 px-6 py-4 pb-28">
+<div class="mb-8 animate-[slideIn_0.4s_ease-out]">
+<h1 class="text-3xl font-display font-bold text-white mb-2 tracking-tight">
+                Welcome aboard!
+            </h1>
+<p class="text-gray-400 text-sm leading-relaxed max-w-[90%]">
+                Quick intro so your SoulPrint knows who it's working with.
+            </p>
+</div>
+<form class="space-y-8" onsubmit="event.preventDefault();">
+<div class="space-y-3 animate-[slideIn_0.5s_ease-out]">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary text-sm">badge</span>
+<label class="text-xs font-display font-bold text-gray-300 uppercase tracking-widest">What's your role?</label>
+</div>
+<div class="flex flex-wrap gap-2">
+<div class="relative group">
+<input checked="" class="peer sr-only" id="role_entrepreneur" name="role" type="radio"/>
+<label class="flex items-center px-4 py-2.5 rounded-lg bg-surface-glass border border-white/10 text-sm text-gray-300 cursor-pointer hover:border-primary/50 transition-all duration-300" for="role_entrepreneur">
+<span class="check-icon material-symbols-outlined text-[14px] overflow-hidden w-0 opacity-0 transition-all duration-300 whitespace-nowrap">check</span>
+                            Entrepreneur
+                        </label>
+</div>
+<div class="relative group">
+<input class="peer sr-only" id="role_engineer" name="role" type="radio"/>
+<label class="flex items-center px-4 py-2.5 rounded-lg bg-surface-glass border border-white/10 text-sm text-gray-300 cursor-pointer hover:border-primary/50 transition-all duration-300" for="role_engineer">
+<span class="check-icon material-symbols-outlined text-[14px] overflow-hidden w-0 opacity-0 transition-all duration-300 whitespace-nowrap">check</span>
+                            Engineer
+                        </label>
+</div>
+<div class="relative group">
+<input class="peer sr-only" id="role_designer" name="role" type="radio"/>
+<label class="flex items-center px-4 py-2.5 rounded-lg bg-surface-glass border border-white/10 text-sm text-gray-300 cursor-pointer hover:border-primary/50 transition-all duration-300" for="role_designer">
+<span class="check-icon material-symbols-outlined text-[14px] overflow-hidden w-0 opacity-0 transition-all duration-300 whitespace-nowrap">check</span>
+                            Designer
+                        </label>
+</div>
+<div class="relative group">
+<input class="peer sr-only" id="role_pm" name="role" type="radio"/>
+<label class="flex items-center px-4 py-2.5 rounded-lg bg-surface-glass border border-white/10 text-sm text-gray-300 cursor-pointer hover:border-primary/50 transition-all duration-300" for="role_pm">
+<span class="check-icon material-symbols-outlined text-[14px] overflow-hidden w-0 opacity-0 transition-all duration-300 whitespace-nowrap">check</span>
+                            Product Manager
+                        </label>
+</div>
+<div class="relative group">
+<input class="peer sr-only" id="role_researcher" name="role" type="radio"/>
+<label class="flex items-center px-4 py-2.5 rounded-lg bg-surface-glass border border-white/10 text-sm text-gray-300 cursor-pointer hover:border-primary/50 transition-all duration-300" for="role_researcher">
+<span class="check-icon material-symbols-outlined text-[14px] overflow-hidden w-0 opacity-0 transition-all duration-300 whitespace-nowrap">check</span>
+                            Researcher
+                        </label>
+</div>
+<div class="relative group">
+<input class="peer sr-only" id="role_student" name="role" type="radio"/>
+<label class="flex items-center px-4 py-2.5 rounded-lg bg-surface-glass border border-white/10 text-sm text-gray-300 cursor-pointer hover:border-primary/50 transition-all duration-300" for="role_student">
+<span class="check-icon material-symbols-outlined text-[14px] overflow-hidden w-0 opacity-0 transition-all duration-300 whitespace-nowrap">check</span>
+                            Student
+                        </label>
+</div>
+</div>
+</div>
+<div class="space-y-3 animate-[slideIn_0.6s_ease-out]">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary text-sm">chat_bubble</span>
+<label class="text-xs font-display font-bold text-gray-300 uppercase tracking-widest">Communication preference?</label>
+</div>
+<div class="flex flex-col gap-2">
+<div class="relative group">
+<input class="peer sr-only" id="comm_concise" name="comm" type="radio"/>
+<label class="flex items-center justify-between px-4 py-3 rounded-lg bg-surface-glass border border-white/10 text-sm text-gray-300 cursor-pointer hover:border-primary/50 transition-all duration-300 group-hover:bg-white/5" for="comm_concise">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-gray-500 peer-checked:text-primary text-lg">short_text</span>
+<div>
+<span class="block font-medium">Concise &amp; Direct</span>
+<span class="block text-[10px] text-gray-500 mt-0.5">Bullet points, raw data, no fluff.</span>
+</div>
+</div>
+<div class="w-4 h-4 rounded-full border border-gray-600 flex items-center justify-center peer-checked:border-primary peer-checked:bg-primary/20">
+<div class="w-2 h-2 rounded-full bg-primary opacity-0 group-hover:opacity-50 peer-checked:opacity-100 transition-opacity"></div>
+</div>
+</label>
+<style>
+                            #comm_concise:checked + label div:last-child { border-color: #EA580C; }
+                            #comm_concise:checked + label div:last-child div { opacity: 1; }
+                            #comm_concise:checked + label .material-symbols-outlined { color: #EA580C; }
+                        </style>
+</div>
+<div class="relative group">
+<input checked="" class="peer sr-only" id="comm_detailed" name="comm" type="radio"/>
+<label class="flex items-center justify-between px-4 py-3 rounded-lg bg-surface-glass border border-white/10 text-sm text-gray-300 cursor-pointer hover:border-primary/50 transition-all duration-300 group-hover:bg-white/5" for="comm_detailed">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-gray-500 peer-checked:text-primary text-lg">notes</span>
+<div>
+<span class="block font-medium">Detailed &amp; Explanatory</span>
+<span class="block text-[10px] text-gray-500 mt-0.5">Full context, reasoning, and analysis.</span>
+</div>
+</div>
+<div class="w-4 h-4 rounded-full border border-gray-600 flex items-center justify-center peer-checked:border-primary peer-checked:bg-primary/20">
+<div class="w-2 h-2 rounded-full bg-primary opacity-0 group-hover:opacity-50 peer-checked:opacity-100 transition-opacity"></div>
+</div>
+</label>
+<style>
+                            #comm_detailed:checked + label div:last-child { border-color: #EA580C; }
+                            #comm_detailed:checked + label div:last-child div { opacity: 1; }
+                            #comm_detailed:checked + label .material-symbols-outlined { color: #EA580C; }
+                        </style>
+</div>
+<div class="relative group">
+<input class="peer sr-only" id="comm_casual" name="comm" type="radio"/>
+<label class="flex items-center justify-between px-4 py-3 rounded-lg bg-surface-glass border border-white/10 text-sm text-gray-300 cursor-pointer hover:border-primary/50 transition-all duration-300 group-hover:bg-white/5" for="comm_casual">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-gray-500 peer-checked:text-primary text-lg">sentiment_satisfied</span>
+<div>
+<span class="block font-medium">Casual &amp; Conversational</span>
+<span class="block text-[10px] text-gray-500 mt-0.5">Friendly tone, emojis, relaxed.</span>
+</div>
+</div>
+<div class="w-4 h-4 rounded-full border border-gray-600 flex items-center justify-center peer-checked:border-primary peer-checked:bg-primary/20">
+<div class="w-2 h-2 rounded-full bg-primary opacity-0 group-hover:opacity-50 peer-checked:opacity-100 transition-opacity"></div>
+</div>
+</label>
+<style>
+                            #comm_casual:checked + label div:last-child { border-color: #EA580C; }
+                            #comm_casual:checked + label div:last-child div { opacity: 1; }
+                            #comm_casual:checked + label .material-symbols-outlined { color: #EA580C; }
+                        </style>
+</div>
+</div>
+</div>
+<div class="space-y-3 animate-[slideIn_0.7s_ease-out]">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary text-sm">travel_explore</span>
+<label class="text-xs font-display font-bold text-gray-300 uppercase tracking-widest">Source?</label>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div class="relative group">
+<input class="peer sr-only" id="source_friend" name="source" type="radio"/>
+<label class="flex items-center justify-center px-4 py-2.5 rounded-lg bg-surface-glass border border-white/10 text-sm text-gray-300 cursor-pointer hover:border-primary/50 transition-all duration-300 text-center" for="source_friend">
+                            Friend
+                        </label>
+</div>
+<div class="relative group">
+<input checked="" class="peer sr-only" id="source_social" name="source" type="radio"/>
+<label class="flex items-center justify-center px-4 py-2.5 rounded-lg bg-surface-glass border border-white/10 text-sm text-gray-300 cursor-pointer hover:border-primary/50 transition-all duration-300 text-center" for="source_social">
+                            Social Media
+                        </label>
+</div>
+<div class="relative group">
+<input class="peer sr-only" id="source_ads" name="source" type="radio"/>
+<label class="flex items-center justify-center px-4 py-2.5 rounded-lg bg-surface-glass border border-white/10 text-sm text-gray-300 cursor-pointer hover:border-primary/50 transition-all duration-300 text-center" for="source_ads">
+                            Ads
+                        </label>
+</div>
+<div class="relative group">
+<input class="peer sr-only" id="source_other" name="source" type="radio"/>
+<label class="flex items-center justify-center px-4 py-2.5 rounded-lg bg-surface-glass border border-white/10 text-sm text-gray-300 cursor-pointer hover:border-primary/50 transition-all duration-300 text-center" for="source_other">
+                            Other
+                        </label>
+</div>
+</div>
+</div>
+</form>
+</main>
+<footer class="fixed bottom-0 w-full z-30 p-6 bg-gradient-to-t from-black via-black/95 to-transparent">
+<button class="w-full bg-primary hover:bg-orange-600 text-white font-display font-bold text-sm tracking-widest py-4 rounded-xl shadow-neon border border-orange-400 transition-all duration-300 active:scale-95 flex items-center justify-center gap-2 group">
+            CONTINUE
+            <span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<div class="w-full flex justify-center mt-6">
+<div class="w-32 h-1 bg-white/20 rounded-full"></div>
+</div>
+</footer>
+<style>
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+</body></html>

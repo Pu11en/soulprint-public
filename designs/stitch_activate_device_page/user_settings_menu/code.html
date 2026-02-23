@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SoulPrint User Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Oswald:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#EA580C", // Matches the orange button in the screenshot
+                        "primary-hover": "#C2410C",
+                        "background-light": "#F3F4F6", // Light gray for light mode
+                        "background-dark": "#0A0A0A", // Almost black for dark mode
+                        "surface-light": "#FFFFFF",
+                        "surface-dark": "#171717",
+                        "border-light": "#E5E7EB",
+                        "border-dark": "#262626",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        display: ["Oswald", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style>.toggle-checkbox:checked {
+            right: 0;
+            border-color: #EA580C;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #EA580C;
+        }.no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-white font-sans antialiased min-h-screen flex flex-col transition-colors duration-200">
+<div class="h-12 w-full bg-background-light dark:bg-background-dark flex items-center justify-between px-6 text-xs font-medium text-gray-900 dark:text-white sticky top-0 z-50">
+<span>9:41</span>
+<div class="flex items-center space-x-2">
+<span class="material-icons-round text-sm">signal_cellular_alt</span>
+<span class="material-icons-round text-sm">wifi</span>
+<span class="material-icons-round text-sm">battery_full</span>
+</div>
+</div>
+<header class="px-6 pb-6 pt-2">
+<h1 class="font-display text-4xl uppercase tracking-tight font-bold text-gray-900 dark:text-white">Settings</h1>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Manage your SoulPrint experience</p>
+</header>
+<main class="flex-1 px-4 pb-24 overflow-y-auto no-scrollbar">
+<section class="mb-8">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-4 flex items-center space-x-4 border border-border-light dark:border-border-dark shadow-sm">
+<div class="relative">
+<img alt="User Profile" class="w-16 h-16 rounded-full object-cover border-2 border-primary" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAu1E8kXZbujqv0ivaOiODjP9hVeY8Qp0QPs8cWxZfUhrmvka1Z9WszmyDbXOSgxutiPDKvqrO0X9oPA3_XsqscLl3he89qshx2vUVpgv6ZIvO8SCthHbsnKctNBP30hZxP-2c939F9uYBiTNftbxPdHKniEqCawG5k1d32ySBFVf2rXAST7rdJxFh8z8RP2hDQGtGwVX5vzwCqtUy9EJeNwsEkCYMtJfJnVP25oHMvyoOXh10zMshV481N4EX8rxeK-UcLSjyDGtEu"/>
+<div class="absolute bottom-0 right-0 w-4 h-4 bg-green-500 rounded-full border-2 border-surface-light dark:border-surface-dark"></div>
+</div>
+<div class="flex-1">
+<h2 class="font-display text-xl font-bold uppercase tracking-wide">Alex Chen</h2>
+<p class="text-xs text-gray-500 dark:text-gray-400">SoulPrint ID: #8821X9</p>
+<button class="mt-2 text-primary text-sm font-medium hover:text-primary-hover transition-colors">Edit Profile</button>
+</div>
+</div>
+</section>
+<section class="mb-6">
+<h3 class="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3 px-2">Appearance</h3>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark overflow-hidden">
+<div class="p-4 border-b border-border-light dark:border-border-dark">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center space-x-3">
+<div class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
+<span class="material-icons-round text-xl">palette</span>
+</div>
+<span class="font-medium text-sm">App Theme</span>
+</div>
+</div>
+<div class="bg-gray-100 dark:bg-black rounded-lg p-1 flex">
+<button class="flex-1 py-2 rounded-md text-xs font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all">
+                            Light
+                        </button>
+<button class="flex-1 py-2 rounded-md bg-white dark:bg-gray-800 text-primary shadow-sm text-xs font-bold transition-all border border-gray-200 dark:border-gray-700">
+                            Dark
+                        </button>
+<button class="flex-1 py-2 rounded-md text-xs font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all">
+                            System
+                        </button>
+</div>
+</div>
+<div class="p-4 flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
+<span class="material-icons-round text-xl">format_size</span>
+</div>
+<span class="font-medium text-sm">Text Size</span>
+</div>
+<span class="text-sm text-gray-500 dark:text-gray-400 font-display">Standard</span>
+</div>
+</div>
+</section>
+<section class="mb-6">
+<h3 class="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3 px-2">Notifications</h3>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark overflow-hidden divide-y divide-border-light dark:divide-border-dark">
+<div class="p-4 flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
+<span class="material-icons-round text-xl">notifications_active</span>
+</div>
+<div class="flex flex-col">
+<span class="font-medium text-sm">Push Notifications</span>
+</div>
+</div>
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer border-gray-300 checked:border-primary transition-all duration-300 ease-in-out left-0 checked:left-5" id="toggle1" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 dark:bg-gray-700 cursor-pointer transition-colors duration-300" for="toggle1"></label>
+</div>
+</div>
+<div class="p-4 flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
+<span class="material-icons-round text-xl">email</span>
+</div>
+<div class="flex flex-col">
+<span class="font-medium text-sm">Email Digest</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">Weekly summaries</span>
+</div>
+</div>
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer border-gray-300 checked:border-primary transition-all duration-300 ease-in-out left-0" id="toggle2" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 dark:bg-gray-700 cursor-pointer transition-colors duration-300" for="toggle2"></label>
+</div>
+</div>
+<div class="p-4 flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
+<span class="material-icons-round text-xl">record_voice_over</span>
+</div>
+<div class="flex flex-col">
+<span class="font-medium text-sm">AI Tone Alerts</span>
+</div>
+</div>
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer border-gray-300 checked:border-primary transition-all duration-300 ease-in-out left-0 checked:left-5" id="toggle3" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 dark:bg-gray-700 cursor-pointer transition-colors duration-300" for="toggle3"></label>
+</div>
+</div>
+</div>
+</section>
+<section class="mb-8">
+<h3 class="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3 px-2">Intelligence</h3>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark overflow-hidden divide-y divide-border-light dark:divide-border-dark">
+<button class="w-full p-4 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+<div class="flex items-center space-x-3">
+<div class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
+<span class="material-icons-round text-xl">psychology</span>
+</div>
+<span class="font-medium text-sm">Memory Management</span>
+</div>
+<span class="material-icons-round text-gray-400">chevron_right</span>
+</button>
+<button class="w-full p-4 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+<div class="flex items-center space-x-3">
+<div class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
+<span class="material-icons-round text-xl">tune</span>
+</div>
+<span class="font-medium text-sm">Tempo &amp; Tone</span>
+</div>
+<span class="material-icons-round text-gray-400">chevron_right</span>
+</button>
+</div>
+</section>
+<section class="mb-8">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark overflow-hidden divide-y divide-border-light dark:divide-border-dark">
+<button class="w-full p-4 flex items-center justify-between text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10 transition-colors group">
+<span class="font-medium text-sm">Log Out</span>
+<span class="material-icons-round text-red-500 opacity-0 group-hover:opacity-100 transition-opacity">logout</span>
+</button>
+<button class="w-full p-4 flex items-center justify-between text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10 transition-colors group">
+<span class="font-medium text-sm">Delete Account</span>
+<span class="material-icons-round text-red-500 opacity-0 group-hover:opacity-100 transition-opacity">delete_forever</span>
+</button>
+</div>
+<p class="text-center text-xs text-gray-400 dark:text-gray-600 mt-4 font-display uppercase tracking-widest">SoulPrint v2.4.0 (Build 992)</p>
+</section>
+</main>
+<nav class="fixed bottom-0 w-full bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-xl border-t border-border-light dark:border-border-dark pb-6 pt-3 px-6 z-40">
+<ul class="flex justify-between items-center">
+<li>
+<a class="flex flex-col items-center space-y-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors" href="#">
+<span class="material-icons-round text-2xl">dashboard</span>
+<span class="text-[10px] font-medium tracking-wide">Home</span>
+</a>
+</li>
+<li>
+<a class="flex flex-col items-center space-y-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors" href="#">
+<span class="material-icons-round text-2xl">chat_bubble_outline</span>
+<span class="text-[10px] font-medium tracking-wide">Chat</span>
+</a>
+</li>
+<li class="-mt-8">
+<a class="flex items-center justify-center w-14 h-14 rounded-full bg-primary text-white shadow-lg shadow-primary/40 hover:scale-105 transition-transform" href="#">
+<span class="material-icons-round text-2xl">add</span>
+</a>
+</li>
+<li>
+<a class="flex flex-col items-center space-y-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors" href="#">
+<span class="material-icons-round text-2xl">folder_open</span>
+<span class="text-[10px] font-medium tracking-wide">Library</span>
+</a>
+</li>
+<li>
+<a class="flex flex-col items-center space-y-1 text-primary" href="#">
+<span class="material-icons-round text-2xl">settings</span>
+<span class="text-[10px] font-medium tracking-wide">Settings</span>
+</a>
+</li>
+</ul>
+</nav>
+<script>
+        const checkboxes = document.querySelectorAll('.toggle-checkbox');
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const label = this.nextElementSibling;
+                if(this.checked) {
+                   // Styles handled by CSS sibling selector
+                } else {
+                   // Styles handled by CSS sibling selector
+                }
+            });
+        });
+    </script>
+
+</body></html>

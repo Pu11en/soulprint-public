@@ -1,0 +1,114 @@
+.files-page {
+  min-height: 100vh;
+  background: #000;
+  color: #fff;
+  padding: 24px;
+  font-family: 'Geist', 'Inter', sans-serif;
+}
+
+.files-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(222, 85, 14, 0.3);
+}
+
+.files-header h1 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #de550e;
+  margin: 0;
+}
+
+.upload-btn {
+  background: linear-gradient(135deg, #de550e, #ff6b1a);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.upload-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(222, 85, 14, 0.4);
+}
+
+.files-loading,
+.files-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #888;
+}
+
+.files-empty-hint {
+  font-size: 14px;
+  margin-top: 8px;
+  opacity: 0.7;
+}
+
+.files-error {
+  background: rgba(255, 59, 48, 0.1);
+  border: 1px solid rgba(255, 59, 48, 0.3);
+  color: #ff3b30;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.files-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.file-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(17, 17, 17, 0.8);
+  border: 1px solid rgba(222, 85, 14, 0.2);
+  border-radius: 8px;
+  padding: 16px;
+  transition: all 0.2s;
+}
+
+.file-item:hover {
+  border-color: rgba(222, 85, 14, 0.5);
+  background: rgba(34, 34, 34, 0.8);
+}
+
+.file-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.file-name {
+  font-weight: 500;
+  color: #fff;
+}
+
+.file-meta {
+  font-size: 12px;
+  color: #888;
+}
+
+.file-download-btn {
+  background: transparent;
+  border: 1px solid rgba(222, 85, 14, 0.5);
+  color: #de550e;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.file-download-btn:hover {
+  background: rgba(222, 85, 14, 0.1);
+  border-color: #de550e;
+}

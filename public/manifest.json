@@ -1,0 +1,37 @@
+{
+  "name": "SoulPrint",
+  "short_name": "SoulPrint",
+  "description": "Your personal AI that knows you",
+  "start_url": "/#chat",
+  "display": "standalone",
+  "background_color": "#0f0f0f",
+  "theme_color": "#ff6b35",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/soulprintsvglogo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["productivity", "lifestyle"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Chat",
+      "url": "/#chat",
+      "description": "Start chatting"
+    }
+  ]
+}

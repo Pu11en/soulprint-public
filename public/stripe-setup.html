@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>SoulPrint Stripe Setup</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #111;
+      color: #fff;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 8px;
+      color: #ff6b35;
+    }
+    .subtitle {
+      color: #888;
+      margin-bottom: 32px;
+    }
+    .step {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .step-num {
+      background: #ff6b35;
+      color: #000;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .step-title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .step p {
+      color: #aaa;
+      margin-bottom: 12px;
+    }
+    a {
+      color: #ff6b35;
+    }
+    .code {
+      background: #000;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 12px;
+      font-family: monospace;
+      font-size: 13px;
+      word-break: break-all;
+      margin: 8px 0;
+    }
+    .label {
+      color: #888;
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+    .products {
+      margin: 12px 0;
+    }
+    .product {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #333;
+    }
+    .product:last-child {
+      border-bottom: none;
+    }
+    .highlight {
+      background: rgba(255,107,53,0.1);
+      border: 1px solid rgba(255,107,53,0.3);
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+    .checklist {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 24px;
+    }
+    .checklist h2 {
+      font-size: 16px;
+      margin-bottom: 12px;
+      color: #4ade80;
+    }
+    .check-item {
+      padding: 6px 0;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔥 SoulPrint Stripe Setup</h1>
+    <p class="subtitle">3 steps, ~10 minutes</p>
+
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">1</div>
+        <div class="step-title">Create Products</div>
+      </div>
+      <p>Go to Stripe → Products → Add Product</p>
+      <a href="https://dashboard.stripe.com/products" target="_blank">Open Stripe Products →</a>
+      
+      <div class="products">
+        <div class="product">
+          <span>SoulPrint Starter</span>
+          <span>$19/mo</span>
+        </div>
+        <div class="product">
+          <span>SoulPrint Pro</span>
+          <span>$49/mo</span>
+        </div>
+        <div class="product">
+          <span>SoulPrint Unlimited</span>
+          <span>$99/mo</span>
+        </div>
+      </div>
+      
+      <div class="highlight">
+        Copy each <strong>Price ID</strong> (starts with price_)
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">2</div>
+        <div class="step-title">Create Webhook</div>
+      </div>
+      <p>Go to Stripe → Developers → Webhooks → Add endpoint</p>
+      <a href="https://dashboard.stripe.com/webhooks" target="_blank">Open Stripe Webhooks →</a>
+      
+      <div class="label">Endpoint URL:</div>
+      <div class="code">https://soulprintengine.ai/api/billing/webhook</div>
+      
+      <p style="margin-top: 12px;">Select these events:</p>
+      <div class="code">checkout.session.completed
+customer.subscription.updated
+customer.subscription.deleted
+invoice.paid</div>
+      
+      <div class="highlight">
+        Copy the <strong>Signing Secret</strong> (starts with whsec_)
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">3</div>
+        <div class="step-title">Send to Drew</div>
+      </div>
+      <p>Send Drew these 3 things:</p>
+      
+      <div class="label">1. Secret Key</div>
+      <div class="code">sk_live_xxxxxxxx or rk_live_xxxxxxxx</div>
+      
+      <div class="label">2. Webhook Secret</div>
+      <div class="code">whsec_xxxxxxxx</div>
+      
+      <div class="label">3. Price ID (pick one as default)</div>
+      <div class="code">price_xxxxxxxx</div>
+    </div>
+
+    <div class="checklist">
+      <h2>✓ Checklist</h2>
+      <div class="check-item">☐ Created 3 products</div>
+      <div class="check-item">☐ Created webhook endpoint</div>
+      <div class="check-item">☐ Sent keys to Drew</div>
+    </div>
+  </div>
+</body>
+</html>

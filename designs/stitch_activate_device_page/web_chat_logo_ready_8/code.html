@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SoulPrint Chat Dark Mode v2</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#DE550E", // SoulPrint Brand Orange
+                        "primary-glow": "rgba(222, 85, 14, 0.5)",
+                        "background-light": "#f8f6f5", // Required from theme config
+                        "background-dark": "#000000", // Deep Obsidian Black
+                        "surface-dark": "#0A0A0C",
+                        "surface-glass": "rgba(255, 255, 255, 0.05)",
+                    },
+                    fontFamily: {
+                        display: ["JetBrains Mono", "monospace"], // Tech/HUD feel
+                        body: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem", 
+                        lg: "0.5rem", 
+                        xl: "0.75rem", 
+                        full: "9999px"
+                    },
+                    boxShadow: {
+                        'neon': '0 0 10px rgba(222, 85, 14, 0.6), 0 0 20px rgba(222, 85, 14, 0.3)',
+                        'neon-sm': '0 0 5px rgba(222, 85, 14, 0.4)',
+                        'glass': '0 4px 30px rgba(0, 0, 0, 0.1)',
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px)",
+                    }
+                },
+            },
+        };
+    </script>
+<style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .glass-panel {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .message-in {
+            animation: slideIn 0.3s ease-out forwards;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }.tech-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(50, 50, 50, 0.2) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(50, 50, 50, 0.2) 1px, transparent 1px);
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        }.scanlines {
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+            background-size: 100% 4px;
+            position: fixed;
+            pointer-events: none;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 50;
+            opacity: 0.1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200 font-body antialiased min-h-screen flex flex-col overflow-hidden relative selection:bg-primary selection:text-white">
+<div class="tech-grid fixed inset-0 pointer-events-none z-0"></div>
+<div class="scanlines pointer-events-none"></div>
+<div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+<div class="absolute top-[-10%] left-[20%] w-64 h-64 bg-primary opacity-5 blur-[80px] rounded-full"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-80 h-80 bg-primary opacity-5 blur-[100px] rounded-full"></div>
+</div>
+<header class="relative z-20 w-full px-4 py-3 flex items-center justify-between bg-black/90 backdrop-blur-md border-b border-white/10 shadow-lg">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-white/5 flex items-center justify-center border border-white/10">
+<span class="material-symbols-outlined text-white/70 text-lg">grid_view</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-display font-bold text-sm tracking-widest text-white uppercase">SoulPrint</span>
+<span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-primary text-white border border-orange-400/50 shadow-neon-sm">V2.0</span>
+</div>
+<div class="flex items-center gap-1.5">
+<div class="w-1 h-1 rounded-full bg-primary shadow-neon animate-pulse"></div>
+<span class="text-[10px] text-gray-400 font-display tracking-wide uppercase">Connection Stable</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-2 bg-white/5 px-2 py-1 rounded-full border border-white/10 hover:border-primary/50 transition-colors cursor-pointer">
+<div class="w-5 h-5 rounded-full overflow-hidden bg-black relative border border-primary/30">
+<img alt="SoulPrint Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvmCBjB2Om1gcTNXDiQZrhnHnu3T3cFWDsn0v65JsFUJnBDvawMMWLWZ__PSBNbO4Tg7a_7iDyzAOKaQleyCxywf-xqfSaA3nUV1ep8tco0wJa02HGdbtyxUH1i5NvS8X57mxsHNnUe1dgcNH4hH2wrd79goJifeTlyySZCiQdJWcMAIZU6SDKOXVrFhw88VIjVyZxxup5hxceQ-XjZedRue50lM1yCGa-JQYBIc5CVwqxzK4lJzqsLjebCGdS_eaarI1oJ9FvOYzX"/>
+</div>
+<span class="text-[10px] font-display text-gray-300 pr-1 uppercase">Drew</span>
+</div>
+<button class="text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto scrollbar-hide relative z-10 p-4 space-y-6 pb-28" id="chat-container">
+<div class="flex justify-center my-4">
+<div class="flex items-center gap-2">
+<div class="h-px w-8 bg-gradient-to-r from-transparent to-white/20"></div>
+<span class="text-[9px] font-display tracking-widest text-gray-500 uppercase">System Log: Today 10:42 AM</span>
+<div class="h-px w-8 bg-gradient-to-l from-transparent to-white/20"></div>
+</div>
+</div>
+<div class="flex gap-3 max-w-[90%] message-in" style="animation-delay: 0.1s">
+<div class="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 bg-black border border-white/10 mt-1 shadow-lg relative group">
+<div class="absolute inset-0 bg-primary/20 animate-pulse rounded-full"></div>
+<img alt="SoulPrint Bot" class="relative z-10 w-full h-full object-cover p-0.5 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-Ht22wVGAZYQjvBMPiljOSoHBVCUXHblIafv7_Ubw-NWD1-hagZlbDgt1jeum_Pu1klik_vVi52pEMuLmBXInYnCF3KfV4-ALZIf8Go7b2Hj5FH3gqgLNNbdt5i_mAqqyId2zbWLPKOkA5OSSPTOituExk28e9pd83cKJJqiBqUan5wITtOL-mjZhw9Oq9ptdDZjS27EAjvJRD7zL3OdcGgGVpj8q_a1BCHargxhtpkliXCIASrp3XWkOwPCw6pxvzOp1Lc7K-u_B"/>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-[9px] text-primary font-display ml-1 tracking-wider opacity-80">AI AGENT // CORE</span>
+<div class="bg-surface-glass backdrop-blur-xl p-4 rounded-xl rounded-tl-none text-sm text-gray-200 leading-relaxed border border-white/10 shadow-glass">
+<p class="font-light">Welcome back, Drew. Neural interface initialized. How can I assist with your data synthesis today?</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1 max-w-[85%] self-end ml-auto message-in" style="animation-delay: 0.3s">
+<div class="bg-primary text-white p-4 rounded-xl rounded-tr-none shadow-neon text-sm leading-relaxed border border-orange-400 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-20 h-20 bg-white opacity-10 blur-2xl rounded-full translate-x-10 -translate-y-10"></div>
+<p class="font-medium relative z-10">Analyze the latest user retention metrics from the Q3 report.</p>
+</div>
+<span class="text-[9px] font-display text-gray-500 mr-1">SENT 10:43 AM</span>
+</div>
+<div class="flex gap-3 max-w-[90%] message-in" style="animation-delay: 0.6s">
+<div class="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 bg-black border border-white/10 mt-1 shadow-lg relative">
+<div class="absolute inset-0 bg-primary/20 animate-pulse rounded-full"></div>
+<img alt="SoulPrint Bot" class="relative z-10 w-full h-full object-cover p-0.5 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwcrgeZa-kx5jH-7ZQzz2EiQGgbJlTHVVF17fUvBtsnqcVL2uXQr2PE-0yK3Bi-CHHREiZ1xDUbKw8QwLaQHouohSEKP74gKOv1ScJmQU6m033bNEGTB1Ozu7u5D-mVlumW34gFtVBQWuvHKohfIjJ_msc5UHt1FEAkYZnnE4K0Q9yoiVR4Z0ngPpzCvXEXaguNOsPMcwsC0lXCIcbp5jEe82vj4JiIbo5NNQDooeaMHql4xFVsOvzWgbgaNd7r8rISWPoWm_R2Rvo"/>
+</div>
+<div class="flex flex-col gap-1 w-full">
+<span class="text-[9px] text-primary font-display ml-1 tracking-wider opacity-80">AI AGENT // ANALYTICS</span>
+<div class="bg-surface-glass backdrop-blur-xl p-4 rounded-xl rounded-tl-none text-sm text-gray-200 leading-relaxed border border-white/10 shadow-glass w-full">
+<div class="flex items-center gap-2 mb-3 pb-2 border-b border-white/5">
+<span class="material-symbols-outlined text-primary text-sm animate-spin">data_usage</span>
+<span class="text-[10px] font-display text-primary tracking-widest shadow-neon-sm">ANALYZING DATA STREAMS...</span>
+</div>
+<p class="mb-3 font-light">Processing Q3 retention cohort. Initial scan indicates a <span class="text-primary font-bold">14.2% increase</span> in user engagement following the UI update.</p>
+<div class="mt-2 p-4 bg-black/40 rounded-lg border border-white/10 relative overflow-hidden">
+<div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px); background-size: 20px 20px;"></div>
+<div class="relative z-10 flex justify-between items-end h-24 gap-2 px-1 pb-4 border-l border-b border-white/20">
+<div class="w-full bg-white/5 rounded-t-sm h-[40%] relative group overflow-hidden border-t border-r border-l border-white/5 hover:border-primary/50 transition-all">
+<div class="absolute bottom-0 w-full bg-primary/30 h-full transition-all duration-1000 group-hover:bg-primary/50"></div>
+<div class="absolute bottom-0 w-full bg-gradient-to-t from-primary to-transparent opacity-40 h-full"></div>
+</div>
+<div class="w-full bg-white/5 rounded-t-sm h-[65%] relative group overflow-hidden border-t border-r border-l border-white/5 hover:border-primary/50 transition-all">
+<div class="absolute bottom-0 w-full bg-primary/30 h-full transition-all duration-1000 group-hover:bg-primary/50"></div>
+<div class="absolute bottom-0 w-full bg-gradient-to-t from-primary to-transparent opacity-40 h-full"></div>
+</div>
+<div class="w-full bg-white/5 rounded-t-sm h-[50%] relative group overflow-hidden border-t border-r border-l border-white/5 hover:border-primary/50 transition-all">
+<div class="absolute bottom-0 w-full bg-primary/30 h-full transition-all duration-1000 group-hover:bg-primary/50"></div>
+<div class="absolute bottom-0 w-full bg-gradient-to-t from-primary to-transparent opacity-40 h-full"></div>
+</div>
+<div class="w-full bg-white/5 rounded-t-sm h-[85%] relative group overflow-hidden border-t border-r border-l border-primary shadow-[0_0_15px_rgba(222,85,14,0.3)]">
+<div class="absolute bottom-0 w-full bg-primary h-full"></div>
+<div class="absolute top-0 left-0 right-0 h-px bg-white/50"></div>
+</div>
+<div class="w-full bg-white/5 rounded-t-sm h-[70%] relative group overflow-hidden border-t border-r border-l border-white/5 hover:border-primary/50 transition-all">
+<div class="absolute bottom-0 w-full bg-primary/30 h-full transition-all duration-1000 group-hover:bg-primary/50"></div>
+<div class="absolute bottom-0 w-full bg-gradient-to-t from-primary to-transparent opacity-40 h-full"></div>
+</div>
+</div>
+<div class="flex justify-between pl-4 mt-[-10px] text-[8px] font-display text-gray-500 tracking-wider">
+<span>JUL</span>
+<span>AUG</span>
+<span>SEP</span>
+<span>OCT</span>
+<span>NOV</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1 max-w-[85%] self-end ml-auto message-in" style="animation-delay: 0.9s">
+<div class="bg-primary text-white p-4 rounded-xl rounded-tr-none shadow-neon text-sm leading-relaxed border border-orange-400 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-20 h-20 bg-white opacity-10 blur-2xl rounded-full translate-x-10 -translate-y-10"></div>
+<p class="font-medium relative z-10">Generate a summary for the stakeholders.</p>
+</div>
+<span class="text-[9px] font-display text-gray-500 mr-1">READ</span>
+</div>
+</main>
+<footer class="fixed bottom-0 w-full z-30 pt-4 bg-gradient-to-t from-black via-black/95 to-transparent pb-6 px-4">
+<div class="flex gap-2 overflow-x-auto scrollbar-hide mb-4 pb-1">
+<button class="flex-shrink-0 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-display text-gray-300 uppercase tracking-wide hover:border-primary hover:text-primary hover:bg-primary/10 transition-all">
+<span class="mr-1 opacity-50">+</span> Create Chart
+        </button>
+<button class="flex-shrink-0 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-display text-gray-300 uppercase tracking-wide hover:border-primary hover:text-primary hover:bg-primary/10 transition-all">
+<span class="mr-1 opacity-50">↓</span> Export PDF
+        </button>
+<button class="flex-shrink-0 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-display text-gray-300 uppercase tracking-wide hover:border-primary hover:text-primary hover:bg-primary/10 transition-all">
+<span class="mr-1 opacity-50">#</span> Deep Dive
+        </button>
+</div>
+<div class="relative flex items-center bg-[#111] rounded-full shadow-2xl border border-primary/50 ring-1 ring-primary/20 p-1.5 group focus-within:ring-primary focus-within:shadow-neon transition-all duration-300">
+<div class="pl-3 pr-2 hidden sm:block">
+<span class="font-display text-primary text-sm animate-pulse">&gt;_</span>
+</div>
+<button class="p-2 text-gray-500 hover:text-primary transition-colors rounded-full hover:bg-white/5">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+</button>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-sm text-white placeholder-gray-500 font-display h-10 tracking-wide" placeholder="Enter command..." type="text"/>
+<div class="flex items-center gap-1">
+<button class="p-2 text-gray-500 hover:text-white transition-colors rounded-full hover:bg-white/5">
+<span class="material-symbols-outlined text-[20px]">mic</span>
+</button>
+<button class="p-2 bg-primary text-white rounded-full shadow-neon hover:shadow-[0_0_15px_rgba(222,85,14,0.8)] hover:scale-105 transition-all flex items-center justify-center w-10 h-10 border border-orange-400">
+<span class="material-symbols-outlined text-[18px]">arrow_upward</span>
+</button>
+</div>
+</div>
+<div class="w-full flex justify-center mt-5">
+<div class="w-32 h-1 bg-white/20 rounded-full"></div>
+</div>
+</footer>
+<script>
+    // Scroll to bottom on load
+    window.onload = function() {
+        const chatContainer = document.getElementById('chat-container');
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+</script>
+
+</body></html>

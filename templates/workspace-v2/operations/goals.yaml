@@ -1,0 +1,27 @@
+# Goals & Objectives
+# Track what your user is working toward
+
+current_focus: ""  # One sentence: what matters most right now
+
+goals:
+  # - id: goal_001
+  #   goal: "Launch SoulPrint to 100 users"
+  #   key_results:
+  #     - "10 paying customers"
+  #     - "NPS > 50"
+  #   deadline: "2026-03-31"
+  #   status: "in_progress"
+  #   progress: 30
+
+priorities:
+  # What order to tackle things
+  # P0: Do today, blocking
+  # P1: This week, important  
+  # P2: This month, valuable
+  # P3: Backlog, nice to have
+
+values:
+  # What drives decisions (in priority order)
+  # Example: ["Learning", "Impact", "Revenue", "Growth"]
+
+updated: "{{CREATED_DATE}}"
